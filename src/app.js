@@ -19,9 +19,16 @@ app.use(express.urlencoded({
 }))
 app.use(express.static("public") //yeh public folder se static files ko serve karega
 )
-app,use(cookieParse()) //yeh cookies ko parse karega
+app.use(cookieParse()) //yeh cookies ko parse karega
 
-// suppose koi url se kuch request kiya toh usko resposne bhejne se phle hum check krenge ki wo valid user hai(user logged in hai ki nai) ki nhi like credentials dekhenge ,toh uss beeche ki checking ko hi middleware bolte hain
-// middleware ka use hum request ko process karne se pehle kuch aur karne ke liye karte hain(next use krke)
+//routes import
+import userRouter from "./routes/user.routes.js"
+
+
+//routes declaration
+app.use("/api/v1/users", userRouter)
+
+
+
 
 export { app }
